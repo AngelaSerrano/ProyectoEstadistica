@@ -1,4 +1,4 @@
-# El grafo alatorio de Erdos-Renyi
+# El grafo aleatorio de Erdos-Renyi
 
 Proyecto final del curso CM274 Introducción a la Estadística y Probabilidades.
 
