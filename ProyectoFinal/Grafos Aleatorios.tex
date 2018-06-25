@@ -1,0 +1,200 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%inserte aqui su comentario
+\newcommand{\dis}{\displaystyle}
+%\newcommand{\sen}{\sin}
+\usepackage{multicol} %\begin{multicols}{numcol}
+%\end{multicols} para múltiples columnas en una página
+\usepackage[left=3.50cm, right=3.50cm, top=3.50cm, bottom=2.50cm]{geometry}
+\usepackage{graphicx}
+\usepackage[pdftex]{color}
+\usepackage{pb-diagram} %diagramas conmutativos
+
+\pagestyle{empty}
+\title{ \Huge \sffamily \itshape {\bf Grafos Aleatorios}}
+\author{Serrano Sanchez Angela\thanks{angelaserrano301@gmail.com}\\Solano Vergaray kevin \thanks{kfsolanov07@gmail.com }\\Silva Guanilo Italo \thanks{italosilvasg@gmail.com}} %\thanks{}sirve para ponerlo en el pie de pagina
+\date{\today}%pone fecha
+
+\begin{document}
+\maketitle %para que aparezca el título en el artículo
+
+\section{Modelos y Relaciones}
+ El estudio de gr\'afos aleatorios uno de los metodos usados  es con la teor\'ia de grafos el modelo Erdos R\'enyi , nombrado as\'i por ser un estudio que realizaron los matem\'aticos Paul Erdos y Alfr\'ed R\'enyi.
+ Sea $ \mathcal{G}_{n,m}$ la familia de todos los grafos con $n$ vertices ($V = [n]=\{1,2,..,n\}$) y $m$ aristas, siendo este $0\leq m \leq\binom {n}{2}$. Ahora $\forall \;G \in \;\mathcal{G}_{n,m}$ le asignaremos una probablilidad :
+ 
+ $$\mathbb{P}(G) =\binom {\binom {n}{2}}{m}^{-1}$$
+ 
+De la misma forma, en pesamos con un grafo vaci\'o en el conjunto [n], e insertamos m aristas. De tal forma que todos los posibles aristas est\'en en $\binom {\binom {n}{2}}{m}^{-1}$ y tengas la misma posibilidad. Ahora tomamos un grafo al azar $\mathbb{G}_{n,m} =([n],E_{n,m})$ y lo nombramos ${\bf grafo\;aleatorio}$, siendo $p$ la probabilidad  que suceda ,fijando $0\leq p \leq 1$ para un  $0\leq m \leq 2$ 
+asignar a cada grafo G en el conjunto de v\'ertices [n] y m aristas una probabilidad
+
+$$\mathbb{P}(G) = p^m(1-p)^{\binom {n}{2}-m}$$
+
+De manera parecida , comenzaremos con un gr\'afo vac\'io con el conjunto de v\'ertices $[n]$ y realizar
+$\binom {n}{2}$ Bernoulli experimental e introducimos aristas de forma independientemente  con probabilidad $p$. Lo cual llamaremos a este grafo aleatorio como, ${\bf grafo \;\; aleatorio\;\;  binomial}$ y denotarlo por $\mathbb{G}_{n,p}=([n],E_{n,p})$.\\
+Como se puede denotar, existe una estrecha relaci\'on entre estos dos modelos
+de grafos aleatorios. Comenzaremos  con una simple observaci\'on.\\
+
+${\bf enunciado \; 1.1}$ Sea un grafo aleatorio
+$\mathbb{G}_{n,p}$ dado que su n\'umero de aristas sea $m$, si $n$ igualmente probable que sea uno de los $\binom {\binom {n}{2}}{m}$ del grafo que tienen m bordes.\\
+Probemos que $G_0$ sea cualquier grafo con m bordes. Entonces
+ 
+ $$\lbrace\mathbb{G}_{n,p}=G_0\rbrace \subseteq \lbrace\mid E_{n,p}\mid = m\rbrace$$
+ tenemos\\
+ 
+ $$\mathbb{P}(\mathbb{G}_{n,p}= G_0\mid\mid E_{n,p}\mid =m)=\frac{\mathbb{P}(\mathbb{G}_{n,p}= G_0,\mid E_{n,p}\mid =m)}{\mathbb{P}(\mid E_{n,p}\mid =m)} $$
+ 
+  $$=\frac{\mathbb{P}(\mathbb{G}_{n,p}= G_0)}{\mathbb{P}(\mid E_{n,p}\mid =m)}$$
+
+$$=\frac{p^m(1-p)^{\binom {n}{2}-m}}{\binom {\binom {n}{2}}{m}p^m(1-p)^{\binom {n}{2}-m} } $$
+
+$$=\binom {\binom{n}{2}}{m}^{-1}$$
+
+Ahora si $\mathbb{G}_{n,p}$, esta condicionado en el evento ( $\mathbb{G}_{n,p}$ tiene m aristas) tiene igual en la distribuci\'on a $\mathbb{G}_{n,m}$ en el grafo elegido al azar en todos los grafos que poseen m aristas.\\
+evidentemente sabemos que la principal diferencia entre esos dos modelos de grafos aleatorios es que en $\mathbb{G}_{n,m}$ elegimos la cantidad de aristas, mientras que en el caso de $\mathbb{G}_{n,p}$ la cantidad de aristas es la variable aleatoria Binomial con los par\'ametros $\binom{n}{2}$ y p.\\
+
+De la misma forma, para un grafo que tiene un $n$ grande y aleatorias,$\mathbb{G}_{n,m}$ y 
+$\mathbb{G}_{n,p}$  deben comportarse de la manera parecida cuando el n\'umero de aristas m de $\mathbb{G}_{n,m}$,si m es igual o est\'a "cerca" del n\'umero esperado de aristas de $\mathbb{G}_{n,p}$ es decir, cuando
+
+
+$$ m =\binom{n}{2} p \approx \frac{n^2p}{2}$$
+
+De manera similar, cuando la probabilidad de aristas en $\mathbb{G}_{n,p}$
+
+ $$p \approx \frac{2m}{n^2}$$
+
+Mas adelante, usaremos una notaci\'on $f \approx g$ que nos indica que $f=(1+ o(1))g$, donde el $o(1)$ termino depender\'a de un par\'ametro que va de 0 a $\infty$ .\\
+veamos una forma practica $"{\bf tecnioca de acoplamiento}"$  que genera un grafo aleatorio $\mathbb{G}_{n,m}$ en dos pasos independientes. Ahora describimos una idea similar que tiene una  ralaci\'on con $\mathbb{G}_{n,m}$.
+Supongamos que $p_1 <p$ y $p_2$ est\'an  definidos por la ecuaci\'on 
+
+  $$1-p =(1-p_1)(1-p_2)$$ 
+
+Entonces,
+
+  $$p= p_1 +p_2 -p_1p_2$$
+
+Entonces una arista no esta incluido en $\mathbb{G}_{n,p}$ sino esta incluido en cualquiera de $\mathbb{G}_{n,p_1}$ y $\mathbb{G}_{n,p_2}$ esto resulta que
+
+$$\mathbb{G}_{n,p} =\mathbb{G}_{n,p_1}\cup \mathbb{G}_{n,p_2}$$
+
+Donde los grafos $\mathbb{G}_{n,p_1}, \mathbb{G}_{n,p_2}$ son independientes.Ahora cuando escribimos
+
+$$\mathbb{G}_{n,p_1}\subseteq \mathbb{G}_{n,p}$$
+
+queremos decir que los grafos est\'an encajados de tal forma que $\mathbb{G}_{n,p}$ se puede obtener de $\mathbb{G}_{n,p_1}$ al superposicionar con $\mathbb{G}_{n,p_2}$ y reemplazar las aristas dobles por uno solo.
+
+Tambi\'en podemos unir los ${\bf grafos aleatorios}$ $\mathbb{G}_{n,m_2}$ y $\mathbb{G}_{n,m_1}$ donde $m_2 \geq  m_1$ a trav\'es de
+
+ $$\mathbb{G}_{n,m_2} = \mathbb{G}_{n,m_1}\cup\mathbb{H} $$
+
+Donde $\mathbb{H}$ en el ${\bf grafos aleatorios}$ es el conjunto de v\'ertices
+ $[n]$ que tiene $m = m_2 - m_1$ aristas
+elegido uniformemente al azar de $\binom {\binom {n}{2}}{m} \smallsetminus E_{n,m_1}$.
+
+Consideremos ahora una propiedad grafos, $\mathcal{}$ definida como un subconjunto de todos los grafos etiquetados en el conjunto de v\'etices $[n]$, es decir, $ \mathcal{P}  \subseteq 2^{\binom {n}{2}}$. \\
+\\
+${\bf Ejemplo}$: todos los grafos conectados (con n v\'ertices), los grafos con un ciclo de Hamilton, los grafo que contienen un sub grafo dado, los grafos planos y los grafos con un v\'ertice de un grado dado forman una $"{\bf propiedad \;de\; grafo}"$ espec\'ifica.
+\\
+
+Mencionaremos dos observaciones simples que muestran una relaci\'on general entre $\mathbb{G}_{n,m}$ y $\mathbb{G}_{n,p}$ en el contexto de las probabilidades de tener una propiedad de grafo dada $ \mathcal{P}$.\\
+\\
+${\bf enunciado \; 1.2}$ Sea P cualquier propiedad del grafo y $ p = m / \binom {n}{2}$ donde $m=m(n) \longrightarrow \infty , \binom {n}{2} - m \longrightarrow \infty $.Entonces para un $n$ grande.
+
+$$\mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P})\leq 10m^{1/2}\mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P})$$
+
+Ahora por la ley probabilidad total
+
+$$\mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P})=\sum_{k=0}^{\binom {n}{2}} \mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P} \mid\;\;\mid E_{n,p} \mid = k)\;\mathbb{P}(\mid E_{n,p}\mid =k)$$
+
+$$ = \sum_{k=0}^{\binom {n}{2}} \mathbb{P}(\mathbb{G}_{n,k}\in \mathcal{P})\;\mathbb{P}(\mid E_{n,p}\mid =k)$$
+$$ \geqslant\mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P})\;\mathbb{P}(\mid E_{n,p}\mid =m) $$
+
+Si el n\'umero de aristas $\mid E_{n,p}\mid$ de un ${\bf grafo aleatorio}$ $\mathbb{G}_{n,p}$ con variable al azar con la distribuci\'on binomial con par\'ametro $\binom{n}{2}$ y $p$. Aplicamos  F\'ormula de Stirling:
+
+$$k!=(1+ o(1))\left(\frac{k}{e}\right)^k \sqrt{2\pi k}, $$
+
+ahora si ponemos $N=\binom {n}{2}$ obtenemos
+
+
+$$\mathbb{P}(\mid E_{n,p}\mid = m)= \dis\binom{N}{m} p^m(1-p)^{\binom {n}{2}-m} $$
+
+$$ =(1+ o(1))\frac{N^N\sqrt{2\pi k}p^m(1-p)^{N-m}}{m^m(N-m)^{N-P}2\pi \sqrt{m(N-m)}}$$
+
+$$=(1+ o(1))\sqrt{\frac{N}{2\pi m(N-m)}},$$
+
+Por lo tanto
+ 
+$$\mathbb{P}(\mid E_{n,p}\mid = m)\geq \frac{1}{10\sqrt{m}}$$
+
+asi que
+  
+  $$\mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P} \leqslant 10m^{1/2}\mathbb{P}(\mathbb{G}_{n,p}\in \mathcal{P})$$
+
+Lo llamaremos a una propiedad de grafos $\mathcal{P}$ 
+mon\'otona\; que\; aumenta si $G \in  \mathcal{P}$ 
+implica $G + e \in \mathcal{P}$, es decir, agregar un arista $e$ a un grafo $G$ no elimina la propiedad.\\
+
+${\bf Por ejemplo:}$ En general, la conectividad y la Hamiltonicidad son propiedades de aumento mon\'otono. UN
+la propiedad de aumento mon\'otono no es trivial si el grafo vac\'io $\overline{K_n}\notin \mathcal{P}$ y el grafo completo $K_n \in \mathcal{P}$
+
+
+Una propiedad de grafo es monótona que disminuye si $G\in \mathcal{P}$  implica $G - e \in \mathcal{P} $, es decir,eliminar un borde  de un grafo no elimina la propiedad. Propiedades de un
+el grafo no está conectado o es plano son ejemplos de disminuci\'on mon\'otona  propiedades de grafo. Obviamente, una propiedad grafo $\mathbb{P}$ es mon\'otona que aumenta si y solo si su complemento es mon\'otono disminuyendo. Claramente, no todos las propiedades grafos son mon\'otonas\\
+${\bf ejemplo}$ tener al menos la mitad de los v\'ertices que tienen una dado el grado fijo $d$ no es mon\'otono.\\
+
+Del argumento si lo acoplamos se deduce que si $\mathcal{P}$ es un mon\'otono que aumenta propiedad entonces, siempre que $p<p'$ o $m<m'$.
+
+$$\mathbb{P}(\mathbb{G}_{n,p} \in \mathcal{P}) \leq \mathbb{P}(\mathbb{G}_{n,p'}\in \mathcal{P})$$
+y
+$$\mathbb{P}(\mathbb{G}_{n,m} \in \mathcal{P}) \leq \mathbb{P}(\mathbb{G}_{n,m'}\in \mathcal{P})$$
+
+respectivamente.\\
+
+Para aumentar las propiedades grafos de forma mon\'otona, podemos obtener una parte superior mucho mejor obligado en $\mathbb{P}(\mathbb{G}_{n,m} \in \mathcal{P})$, en t\'erminos de $\mathbb{P}(\mathbb{G}_{n,m} \in \mathcal{P})$, que el dado por ${\bf enunciado 1.2}$\\
+\\
+${\bf enunciado 1.2}$ Sea $\mathcal{P}$ un mon\'otono que aumenta la propiedad del grafo y $p =\frac{m}{N}$, Entonces, para $n$ grande y $p$ tal que $N p, N (1 - p) / (N p)^{ / 2}\longrightarrow\infty  $
+
+$$\mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P})\leqslant 3 \mathbb{P}(\mathbb{G}_{n,p}\in \mathcal{P}).$$
+
+Prueba Supongamos que $\mathcal{P}$ es mon\'otona y $p =\frac{m}{N}$, donde $N = \binom{n}{2}$ Entonces
+ 
+$$\mathbb{P}(\mathbb{G}_{n,p}\in \mathcal{P}) = \sum_{k=0}^{N} \mathbb{P}(\mathbb{G}_{n,k}\in \mathcal{P})\;\mathbb{P}(\mid E_{n,p}\mid =k)$$
+
+$$ \geqslant\sum_{k=m}^{N}\mathbb{P}(\mathbb{G}_{n,k}\in \mathcal{P})\;\mathbb{P}(\mid E_{n,p}\mid =k) $$
+ Sin embargo, por la propiedad de acoplamiento sabemos que para $k \geqslant m$,
+ 
+ $$\mathbb{P}(\mathbb{G}_{n,k}\in \mathcal{P})\geq  \mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P}).$$
+ 
+ El número de bordes $\mid E_{n,p}\mid $ en $\mathbb{G}_{n,p}$ tiene la distribuci\'on binomial con par\'ametros N, p. Por lo tanto
+ 
+ $$\mathbb{P}(\mathbb{G}_{n,p}\in \mathcal{P}) \geqslant \mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P}) \sum_{k=m}^{N} \;\mathbb{P}(\mid E_{n,p}\mid =k)$$
+ 
+  $$=\mathbb{P}(\mathbb{G}_{n,m}\in \mathcal{P}) \sum_{k=m}^{N} \;u_k$$
+ 
+ donde 
+ $$u_k=\dis\binom{N}{k} p^k (1-p)^{N-K}. $$
+ 
+ Ahora, usando la fórmula de Stirling,
+ $$u_m=(1+0(1)\frac{N^Np^m(1-p)^{N-m}}{m^m(N-m)^{N-m}(2\pi m)^{1/2}}=\frac{1+o(1)}{(2\pi m^{1/2}}$$
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+\end{document}
